@@ -1,6 +1,6 @@
 import { calculateFileHash } from "./calculateFileHash";
 import { displayResult } from "./displayResult";
-import { lookupHashInMetadefender } from "./lookupHashInMetadefender";
+import { getMetadefenderHash } from "./getMetadefenderHash";
 import { pollForResult } from "./pollForResult";
 import { uploadFileToMetadefender } from "./uploadFileToMetadefender";
 
@@ -13,17 +13,14 @@ async function init() {
     } else {
         try {
             const hash = await calculateFileHash(filePath);
-            const response = await lookupHashInMetadefender(hash, apiKey);
+            const hashResponse = await getMetadefenderHash(hash, apiKey);
 
-            if (response === null) {
-                const newDataId = await uploadFileToMetadefender(
-                    filePath,
-                    apiKey
-                );
+            if (hashResponse === null) {
+                const dataId = await uploadFileToMetadefender(filePath, apiKey);
 
-                await pollForResult(apiKey, newDataId);
+                await pollForResult(apiKey, dataId);
             } else {
-                displayResult(response);
+                displayResult(hashResponse);
             }
         } catch (error) {
             console.error(`Error: ${error}`);

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-export async function lookupHashInMetadefender(
+export async function getMetadefenderHash(
     hash: string,
     apiKey: string
 ): Promise<AxiosResponse | null> {

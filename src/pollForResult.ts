@@ -1,17 +1,14 @@
 import axios from "axios";
-import { MetadefenderResponse } from "./components/MetadefenderResponse";
-import { NewEngineFormat } from "./components/NewEngineFormat";
-import { Engine } from "./components/Engine";
 import { displayResult } from "./displayResult";
+
+const POLL_INTERVAL = 10000;
 
 export async function pollForResult(
     apiKey: string,
     dataId: string
 ): Promise<void> {
-    const pollInterval = 10000;
-
     while (true) {
-        await new Promise((resolve) => setTimeout(resolve, pollInterval));
+        await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL));
 
         try {
             const response = await axios.get(
