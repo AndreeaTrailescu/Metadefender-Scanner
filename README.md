@@ -45,5 +45,3 @@ To start the API server, execute the following command:
 ```
 npm start
 ```
-
-Th
