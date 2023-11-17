@@ -6,7 +6,7 @@ import { uploadFileToMetadefender } from "./uploadFileToMetadefender";
 
 async function init() {
     const apiKey = process.env.API_KEY;
-    const filePath = process.env.FILE_PATH || "./utils/ceva.txt";
+    const filePath = process.env.FILE_PATH || "./src/utils/ceva.txt";
 
     if (!apiKey) {
         console.error("API key is undefined.");
